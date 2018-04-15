@@ -1,0 +1,14 @@
+{
+    "http": {
+      "badRequest": "A requisição realizada é inválida.",
+      "error": "An error occurred.",
+      "notFound": "Não foi possível encontrar o recurso selecionado."
+    },
+    "person": {
+      "notFound": "It was not possible to retrieve data from user."
+    },
+    "events": {
+      "error": "It was not possible to retrieve data from event.",
+      "eventNotFound": "It was not possible to retrieve data from a event with the provided information."
+    }
+}

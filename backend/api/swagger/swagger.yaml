@@ -1,0 +1,97 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: cprn_ehnois
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /events/:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: eventsController
+    get:
+      description: Returns all events
+      # used as the method name of the controller
+      operationId: getEvents
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/EventModel"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  EventModel:
+    properties:
+      id:
+        type: number
+      title:
+        type: string
+      description:
+        type: string
+      category:
+        type: string
+      beginDate:
+        type: string
+        format: date-time
+      endDate:
+        type: string
+        format: date-time
+      createdBy:
+        type: string
+      created:
+        type: string
+        format: date-time
+      updatedBy:
+        type: string
+      updated:
+        type: string
+        format: date-time
+      location:
+        $ref: '#/definitions/AddressModel'
+  AddressModel:
+    properties:
+      placename:
+        type: string
+      street:
+        type: string
+      complement:	
+        type: string
+      city: 
+        type: string
+      state: 
+        type: string
+      neighborhood: 
+        type: string
+      zipcode: 
+        type: string
+      number:	
+        type: string
+      country: 
+        type: string
